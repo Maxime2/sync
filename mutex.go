@@ -8,7 +8,7 @@ import (
 )
 
 type Mutex_trace struct {
-	mu     Mutex
+	mu     sync.Mutex
 	name   string
 	logger *logrus.Entry
 }
