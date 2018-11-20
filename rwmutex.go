@@ -22,46 +22,46 @@ func (rw *RWMutex_trace) RLock() {
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "request",
-	}).Error("RLock()")
+	}).Warn("RLock()")
 	rw.mu.RLock()
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "grant",
-	}).Error("RLock()")
+	}).Warn("RLock()")
 }
 
 func (rw *RWMutex_trace) RUnlock() {
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "request",
-	}).Error("RUnlock()")
+	}).Warn("RUnlock()")
 	rw.mu.RUnlock()
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "grant",
-	}).Error("RUnlock()")
+	}).Warn("RUnlock()")
 }
 
 func (rw *RWMutex_trace) Lock() {
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "request",
-	}).Error("Lock()")
+	}).Warn("Lock()")
 	rw.mu.Lock()
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "grant",
-	}).Error("Lock()")
+	}).Warn("Lock()")
 }
 
 func (rw *RWMutex_trace) Unlock() {
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "request",
-	}).Error("Unlock()")
+	}).Warn("Unlock()")
 	rw.mu.Unlock()
 	rw.logger.WithFields(logrus.Fields{
 		"name": rw.name,
 		"status": "grant",
-	}).Error("Unlock()")
+	}).Warn("Unlock()")
 }

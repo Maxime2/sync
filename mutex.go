@@ -22,22 +22,22 @@ func (m *Mutex_trace) Lock() {
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "request",
-	}).Error("Lock()")
+	}).Warn("Lock()")
 	m.mu.Lock()
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "grant",
-	}).Error("Lock()")
+	}).Warn("Lock()")
 }
 
 func (m *Mutex_trace) Unlock() {
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "request",
-	}).Error("Unlock()")
+	}).Warn("Unlock()")
 	m.mu.Unlock()
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "grant",
-	}).Error("Unlock()")
+	}).Warn("Unlock()")
 }
