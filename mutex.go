@@ -18,18 +18,6 @@ func (m *Mutex_trace) SetNameAndLogger(name string, logger *logrus.Entry) {
 	m.logger = logger
 }
 
-func (m *Mutex_trace) RLock() {
-	m.logger.WithFields(logrus.Fields{
-		"name": m.name,
-		"status": "request",
-	}).Error("RLock()")
-	m.mu.RLock()
-	m.logger.WithFields(logrus.Fields{
-		"name": m.name,
-		"status": "grant",
-	}).Error("RLock()")
-}
-
 func (m *Mutex_trace) Lock() {
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
