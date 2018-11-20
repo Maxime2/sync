@@ -21,12 +21,14 @@ func (m *Mutex_trace) SetNameAndLogger(name string, logger *logrus.Entry) {
 
 func (m *Mutex_trace) Lock() {
 	pc, filename, line, ok := runtime.Caller(1)
+	details := runtime.FuncForPC(pc)
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "request",
 		"file": filename,
 		"line" : line,
 		"ok": ok,
+		"function": details.Name(),
 	}).Warn("Lock()")
 	m.mu.Lock()
 	m.logger.WithFields(logrus.Fields{
@@ -35,17 +37,20 @@ func (m *Mutex_trace) Lock() {
 		"file": filename,
 		"line" : line,
 		"ok": ok,
+		"function": details.Name(),
 	}).Warn("Lock()")
 }
 
 func (m *Mutex_trace) Unlock() {
 	pc, filename, line, ok := runtime.Caller(1)
+	details := runtime.FuncForPC(pc)
 	m.logger.WithFields(logrus.Fields{
 		"name": m.name,
 		"status": "request",
 		"file": filename,
 		"line" : line,
 		"ok": ok,
+		"function": details.Name(),
 	}).Warn("Unlock()")
 	m.mu.Unlock()
 	m.logger.WithFields(logrus.Fields{
@@ -54,5 +59,6 @@ func (m *Mutex_trace) Unlock() {
 		"file": filename,
 		"line" : line,
 		"ok": ok,
+		"function": details.Name(),
 	}).Warn("Unlock()")
 }
